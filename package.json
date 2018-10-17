@@ -20,6 +20,10 @@
     "url": "https://github.com/pgiani/console-clean_logs/issues"
   },
   "homepage": "https://github.com/pgiani/clean_logs#readme",
+  "dependencies": {
+    "moment": "^2.22.2",
+    "lodash": "^4.17.11"
+  },
   "devDependencies": {
     "mocha": "^4.0.1"
   }
