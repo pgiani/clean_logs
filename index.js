@@ -1,4 +1,5 @@
 // Author: Pgiani - Page: https://github.com/pgiani/clean_logs.git
+import { logOut } from './app/loging';
 
 exports.LOGGING_LEVELS = LOGGING_LEVELS = {
   NOTSET: 0,
@@ -16,22 +17,17 @@ Object.keys(LOGGING_LEVELS).map(function(levelName) {
 
 var loggingLevel = LOGGING_LEVELS.NOTSET;
 
-function log(level, args) {
-  console.log.apply(
-    null,
-    [INVERTED_LOGGING_LEVELS[level] + ':'].concat(
-      Object.keys(args).map(function(key) {
-        return args[key];
-      }),
-    ),
-  );
+function log(level, data, messagetype = 'x') {
+  console.log(messagetype);
+  const levelText = [INVERTED_LOGGING_LEVELS[level]];
+  logOut(data, levelText, messagetype);
 }
 
 const Logging = {};
 Logging.log = log;
 
-function logWithLevel(level, message) {
-  if (loggingLevel <= level) Logging.log(level, message);
+function logWithLevel(level, message, messagetype) {
+  if (loggingLevel <= level) Logging.log(level, message, messagetype);
 }
 
 //region [ Logger ]
@@ -60,8 +56,8 @@ logger.setLevel = function setLoggingLevel(level) {
  * @param level
  * @param message
  */
-logger.log = function(level, message) {
-  logWithLevel(level, message);
+logger.log = function(level, message, messagetype) {
+  logWithLevel(level, message, messagetype);
 };
 
 /**
@@ -69,6 +65,15 @@ logger.log = function(level, message) {
  */
 logger.debug = function logDebug(message) {
   this.log(LOGGING_LEVELS.DEBUG, arguments);
+};
+
+/**
+ * @param {...*} message
+ */
+
+logger.noFunc = function lognoFunc(message) {
+  console.log('noFunc');
+  this.log(LOGGING_LEVELS.DEBUG, arguments, 'noFunc');
 };
 
 /**
