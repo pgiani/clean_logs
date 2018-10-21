@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/pgiani/clean_logs#readme",
   "dependencies": {
-    "moment": "^2.22.2",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
