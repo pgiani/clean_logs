@@ -4,10 +4,11 @@ import { logOut } from './app/loging';
 exports.LOGGING_LEVELS = LOGGING_LEVELS = {
   NOTSET: 0,
   DEBUG: 10,
+  DEBUGDATA: 11,
   INFO: 20,
   WARNING: 30,
   ERROR: 40,
-  CRITICAL: 50,
+  CLEAR: 100,
 };
 
 var INVERTED_LOGGING_LEVELS = {};
@@ -17,10 +18,9 @@ Object.keys(LOGGING_LEVELS).map(function(levelName) {
 
 var loggingLevel = LOGGING_LEVELS.NOTSET;
 
-function log(level, data, messagetype = 'x') {
-  console.log(messagetype);
-  const levelText = [INVERTED_LOGGING_LEVELS[level]];
-  logOut(data, levelText, messagetype);
+function log(level, data) {
+  const levelText = INVERTED_LOGGING_LEVELS[level];
+  logOut(data, levelText);
 }
 
 const Logging = {};
@@ -63,6 +63,13 @@ logger.log = function(level, message, messagetype) {
 /**
  * @param {...*} message
  */
+logger.debugdata = function logDebug(message) {
+  this.log(LOGGING_LEVELS.DEBUGDATA, arguments);
+};
+
+/**
+ * @param {...*} message
+ */
 logger.debug = function logDebug(message) {
   this.log(LOGGING_LEVELS.DEBUG, arguments);
 };
@@ -70,9 +77,8 @@ logger.debug = function logDebug(message) {
 /**
  * @param {...*} message
  */
-
 logger.noFunc = function lognoFunc(message) {
-  this.log(LOGGING_LEVELS.DEBUG, arguments, 'noFunc');
+  this.log(LOGGING_LEVELS.DEBUG, arguments);
 };
 
 /**
@@ -94,13 +100,6 @@ logger.warning = function logWarning(message) {
  */
 logger.error = function logError(message) {
   this.log(LOGGING_LEVELS.ERROR, arguments);
-};
-
-/**
- * @param {...*} message
- */
-logger.critical = function logCritical(message) {
-  this.log(LOGGING_LEVELS.CRITICAL, arguments);
 };
 
 exports.logger = logger;

@@ -20,7 +20,7 @@ function deep(object) {
   return level;
 }
 
-export default function getType(key, value) {
+export default function getType(key, value, level = null) {
   let text = '';
   const type = typeof value;
   const datetype = Object.prototype.toString.call(value);
@@ -46,7 +46,7 @@ export default function getType(key, value) {
       break;
     case 'function':
       text = `ƒ %c${key}()`;
-      console.log(text, 'color: DarkCyan');
+      if (level !== 'DEBUGDATA') console.log(text, 'color: DarkCyan');
 
       break;
     case 'undefined':
