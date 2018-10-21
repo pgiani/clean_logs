@@ -1,17 +1,18 @@
 **console-logging**
 
-A wrapper around usual console.log() - This is a utility that I want to use along my frontend projects where I need to include logs for debugging and can easily turn them on/off by setting the logging level.
+A wrapper around usual console.log() - This is a utility that I want to use along my frontend projects where I need to include logs for debugging and can easily turn them on/off by setting the logging level and make the out put pretty.
 
 ## Usage
 
 ```
-const logging = require("console-logging");
+const logging = require("clean_logs");
 const logger = logging.logger;
 ```
 
 or ES6 import
+
 ```
-import {LOGGING_LEVELS, logger } from 'console-logging';
+import {LOGGING_LEVELS, logger } from 'clean_logs';
 ```
 
 The use case of logger.setLevel() is in production environment, just switch on/off the logger and you have extra debug logs!
@@ -31,6 +32,8 @@ logger.error("Transaction fail, transaction id 1")  // Output 'Transaction fail,
 
 // multi-args is supported
 logger.error("Hi", "I am", "an error")  // Output 'Hi I am an error'
-
 ```
 
+## License
+
+MIT
