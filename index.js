@@ -3,12 +3,11 @@ import { logOut } from './app/loging';
 
 exports.LOGGING_LEVELS = LOGGING_LEVELS = {
   NOTSET: 0,
-  DEBUG: 10,
-  DEBUGDATA: 11,
-  INFO: 20,
-  WARNING: 30,
-  ERROR: 40,
-  CLEAR: 100,
+  CLEAR: 10,
+  DEBUG: 20,
+  DEBUGDATA: 30,
+  WARNING: 40,
+  ERROR: 50,
 };
 
 var INVERTED_LOGGING_LEVELS = {};
