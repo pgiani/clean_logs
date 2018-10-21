@@ -84,13 +84,6 @@ logger.clear = function lognoFunc(message) {
 /**
  * @param {...*} message
  */
-logger.info = function logInfo(message) {
-  this.log(LOGGING_LEVELS.INFO, arguments);
-};
-
-/**
- * @param {...*} message
- */
 logger.warning = function logWarning(message) {
   this.log(LOGGING_LEVELS.WARNING, arguments);
 };

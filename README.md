@@ -20,10 +20,10 @@ So remember to include logger.xyz() during app development.
 
 ```
 logger.setLevel(logging.LOGGING_LEVELS.CRITICAL)
-logger.setLevel("CRITICAL")  // Supports string levels: DEBUG, INFO, WARNING, ERROR, CRITICAL
+logger.setLevel("CRITICAL")  // Supports string levels: DEBUG, DEBUGDATA, WARNING, ERROR, CLEAR
 
 // or get level from environment variable
-logger.setLevel(process.env.LOGGING_LEVEL)  // process.env.LOGGING_LEVEL = "DEBUG|INFO|WARNING|ERROR|CRITICAL"
+logger.setLevel(process.env.LOGGING_LEVEL)  // process.env.LOGGING_LEVEL = "DEBUG|DEBUGDATA|WARNING|ERROR|CLEAR"
 
 logger.error("Transaction fail, transaction id 1")  // No output
 
