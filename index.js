@@ -77,8 +77,8 @@ logger.debug = function logDebug(message) {
 /**
  * @param {...*} message
  */
-logger.noFunc = function lognoFunc(message) {
-  this.log(LOGGING_LEVELS.DEBUG, arguments);
+logger.clear = function lognoFunc(message) {
+  this.log(LOGGING_LEVELS.CLEAR, arguments);
 };
 
 /**

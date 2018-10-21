@@ -11,7 +11,6 @@ function deep(object) {
   var key;
   for (key in object) {
     if (!object.hasOwnProperty(key)) continue;
-
     if (typeof object[key] == 'object') {
       var depth = deep(object[key]) + 1;
       level = Math.max(depth, level);
@@ -29,34 +28,41 @@ export default function getType(key, value, level = null) {
     case 'boolean':
       if (value === true) {
         text = `${key}: %c TRUE`;
-        console.log(text, 'color: green');
+        console.log(text, 'color: green; font-style: italic');
       } else if (value === false) {
         text = `${key}: %c FALSE`;
-        console.log(text, 'color: red');
+        console.log(text, 'color: red; font-style: italic');
       }
       break;
+
     case 'number':
       text = `${key}: %c ${value}`;
       if (value > 0) console.log(text, 'color: SaddleBrown');
-      else console.log(text, 'color: Tomato ');
+      else console.log(text, 'color: Tomato; font-style: italic');
       break;
+
     case 'string':
       text = `${key}: %c "${value}"`;
       console.log(text, 'color: blue');
       break;
+
     case 'function':
       text = `ƒ %c${key}()`;
+      // one option is not login out funtions
       if (level !== 'DEBUGDATA') console.log(text, 'color: DarkCyan');
-
       break;
+
     case 'undefined':
       text = `${key}: %c UNDEFINED`;
-      console.log(text, 'color: Chocolate');
+      console.log(text, 'color: Chocolate; font-style: italic');
       break;
+
     case 'null':
       text = `${key}: %c NULL`;
-      console.log(text, 'color: Brown');
+      console.log(text, 'color: Brown; font-style: italic');
       break;
+
+    // objects are a especial case
     case 'object':
       if (datetype === '[object Date]') {
         text = `${key}: %c ${value.toLocaleString()} (date)`;
@@ -65,7 +71,7 @@ export default function getType(key, value, level = null) {
       }
       if (_isNull(value)) {
         text = `${key}: %c NULL`;
-        console.log(text, 'color: Brown');
+        console.log(text, 'color: Brown; font-style: italic');
         break;
       }
       if (_has(value, '_isAMomentObject')) {
@@ -78,13 +84,17 @@ export default function getType(key, value, level = null) {
         console.log(text, 'color: DeepPink');
         break;
       }
+
+      // check how deep the object is, formationd very deep nested objects will
+      // will make the the browser slow down
       deeped = deep(value);
+
       if (deeped > 0 && deeped < 10) {
         // Not an arrrayjust go 2 levels deep
         console.groupCollapsed(`${key} [${_size(value)}]`);
         const properties = Object.getOwnPropertyNames(value);
         _forEach(properties, o => {
-          getType(o, value[o]);
+          getType(o, value[o], level);
         });
         console.groupEnd();
 
