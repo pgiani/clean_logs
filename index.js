@@ -72,7 +72,6 @@ logger.debug = function logDebug(message) {
  */
 
 logger.noFunc = function lognoFunc(message) {
-  console.log('noFunc');
   this.log(LOGGING_LEVELS.DEBUG, arguments, 'noFunc');
 };
 

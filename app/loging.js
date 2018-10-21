@@ -251,16 +251,7 @@ export function l(key, value) {
 }
 
 export function logOut(data, levelText, consoleType = 'x') {
-  // dont log is not in dev but do log errors cliente only
-  console.log(data);
-  console.log('--bbbbbbbbbb---');
-  _.map(data, o => console.log(o));
-  console.log('--bbbbbbbbbb---');
-  console.log(levelText);
-  console.log(consoleType);
-  console.log('--dddddd');
   if (consoleType === 'off') return;
-
   const objType = typeof data;
   const KeysOnText = _keys(data);
   if (objType === 'string' || objType === 'number') {
@@ -302,7 +293,12 @@ export function logOut(data, levelText, consoleType = 'x') {
     }
   } else {
     const Label = getText(data);
-
+    data = _.filter(data, o => {
+      console.log('===');
+      console.log(o);
+      console.log('==|==');
+      return o !== Label.text;
+    });
     switch (consoleType) {
       case 'e':
         console.error(`1---${Label.text}---`);
@@ -319,8 +315,13 @@ export function logOut(data, levelText, consoleType = 'x') {
         break;
 
       case 'noFunc':
-        console.groupCollapsed(`3---${Label.text}---`);
-        _forEach(data, (val, key) => lc(key, val));
+        console.warn(`Trace ---${Label.text} ${_.size(data)}`);
+        console.group(Label.text);
+        if (_.size(data) === 1) {
+          _forEach(data[0], (val, key) => lc(key, val));
+        } else {
+          _forEach(data, (val, key) => lc(key, val));
+        }
 
         console.groupEnd();
         break;
@@ -328,7 +329,8 @@ export function logOut(data, levelText, consoleType = 'x') {
       default:
         console.warn(`4---${Label.text}---`);
         console.groupCollapsed(`---${Label.text}---`);
-        _forEach(data, (val, key) => l(key, val));
+
+        _forEach(KeysOnText, key => l(key, data[key]));
 
         console.groupEnd();
       //console.log(text);
