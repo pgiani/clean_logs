@@ -47,7 +47,7 @@ export default function getType(key, value, level = null) {
       break;
 
     case 'function':
-      text = `ƒ %c${key}()`;
+      text = `%c${key}()`;
       // one option is not login out funtions
       if (level !== 'DEBUGDATA') console.log(text, 'color: DarkCyan');
       break;
@@ -88,11 +88,19 @@ export default function getType(key, value, level = null) {
       // check how deep the object is, formationd very deep nested objects will
       // will make the the browser slow down
       deeped = deep(value);
+      const unordered = value;
+      const ordered = {};
+      // try sort out the objects
+      Object.keys(unordered)
+        .sort()
+        .forEach(function(key) {
+          ordered[key] = unordered[key];
+        });
 
       if (deeped > 0 && deeped < 10) {
         // Not an arrrayjust go 2 levels deep
         console.groupCollapsed(`${key} [${_size(value)}]`);
-        const properties = Object.getOwnPropertyNames(value);
+        const properties = Object.getOwnPropertyNames(ordered);
         _forEach(properties, o => {
           getType(o, value[o], level);
         });

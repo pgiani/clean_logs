@@ -1,11 +1,12 @@
 import _filter from 'lodash/filter';
 import _size from 'lodash/size';
+import _sortedIndexBy from 'lodash/sortedIndexBy';
 import _forEach from 'lodash/forEach';
 
 import { getText } from './getText';
 import getType from './getType';
 
-function loop  (data)   {
+function loop(data, level) {
   if (_size(data) === 1) {
     _forEach(data[0], (val, key) => getType(key, val, level));
   } else {
@@ -13,7 +14,7 @@ function loop  (data)   {
   }
 }
 
-export function logOut(data, level = 'DEBUG') => {
+export function logOut(data, level = 'DEBUG') {
   const objType = typeof data;
 
   // if clear them clear the console first the out put the message
@@ -41,28 +42,37 @@ export function logOut(data, level = 'DEBUG') => {
     const Label = getText(data);
 
     // removed the label from the data structure
-    data = _filter(data, o => {
+
+    const unordered = _filter(data, o => {
       return o !== Label.text;
     });
+
+    const ordered = {};
+    // try sort out the objects
+    Object.keys(unordered)
+      .sort()
+      .forEach(function(key) {
+        ordered[key] = unordered[key];
+      });
 
     switch (level) {
       case 'ERROR':
         console.error(`1---${Label.text}---`);
         console.groupCollapsed(`---${Label}---`);
-        loop(data);
+        loop(ordered, level);
         console.groupEnd();
         break;
 
       case 'WARNING':
         console.warn(`---${Label.text}---`);
         console.groupCollapsed(`- ${Label.text}`);
-        loop(data);
+        loop(ordered, level);
         console.groupEnd();
         break;
 
       default:
         console.group(`- ${Label.text}`);
-        loop(data);
+        loop(ordered, level);
         console.groupEnd();
       //console.log(text);
     }
