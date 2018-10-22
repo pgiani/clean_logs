@@ -1,5 +1,5 @@
 // Author: Pgiani - Page: https://github.com/pgiani/clean_logs.git
-import { logOut } from './app/loging';
+import { logOut } from './loging';
 
 export const LOGGING_LEVELS = {
   NOTSET: 0,
