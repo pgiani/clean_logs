@@ -87,7 +87,7 @@ export default function getType(key, value, level = null) {
 
       // check how deep the object is, formationd very deep nested objects will
       // will make the the browser slow down
-      deeped = deep(value);
+      const deeped = deep(value);
       const unordered = value;
       const ordered = {};
       // try sort out the objects

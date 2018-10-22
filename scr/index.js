@@ -1,7 +1,7 @@
 // Author: Pgiani - Page: https://github.com/pgiani/clean_logs.git
 import { logOut } from './app/loging';
 
-exports.LOGGING_LEVELS = LOGGING_LEVELS = {
+export const LOGGING_LEVELS = {
   NOTSET: 0,
   CLEAR: 10,
   DEBUG: 20,
@@ -10,19 +10,19 @@ exports.LOGGING_LEVELS = LOGGING_LEVELS = {
   ERROR: 50,
 };
 
-var INVERTED_LOGGING_LEVELS = {};
+let INVERTED_LOGGING_LEVELS = {};
 Object.keys(LOGGING_LEVELS).map(function(levelName) {
   INVERTED_LOGGING_LEVELS[LOGGING_LEVELS[levelName]] = levelName;
 });
 
-var loggingLevel = LOGGING_LEVELS.NOTSET;
+let loggingLevel = LOGGING_LEVELS.NOTSET;
 
 function log(level, data) {
   const levelText = INVERTED_LOGGING_LEVELS[level];
   logOut(data, levelText);
 }
 
-const Logging = {};
+export const Logging = {};
 Logging.log = log;
 
 function logWithLevel(level, message, messagetype) {
@@ -30,7 +30,7 @@ function logWithLevel(level, message, messagetype) {
 }
 
 //region [ Logger ]
-const logger = {};
+export const logger = {};
 
 /**
  * Sets the logging level
@@ -93,12 +93,3 @@ logger.warning = function logWarning(message) {
 logger.error = function logError(message) {
   this.log(LOGGING_LEVELS.ERROR, arguments);
 };
-
-exports.logger = logger;
-//endregion
-
-exports.Logging = Logging;
-
-if (require.main === module) {
-  logger.info('helo);
-}
