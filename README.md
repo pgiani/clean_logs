@@ -43,7 +43,7 @@ They all have the same great formating but each have some unique diferences
 
 ```
 Here is the console.log from a react app
-
+![](./images/before.png)
 clear
 ```
 
