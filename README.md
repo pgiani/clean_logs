@@ -1,7 +1,12 @@
 **console-logging**
-Turn you console form this
+
+Turn your plain console form this
+
 ![](./images/before.png)
+
 To this
+
+![](./images/after.png)
 
 A wrapper around usual console.log() - This is a utility that I want to use along my frontend projects where I need to include logs for debugging and can easily turn them on/off by setting the logging level and make the console much easy to read.
 
@@ -39,17 +44,50 @@ logger.error("Transaction fail, transaction id 1")  // Output 'Transaction fail,
 logger.error("Hi", "I am", "an error")  // Output 'Hi I am an error'
 ```
 
-## Log Types
+## Log Formating
 
 You have 5 log type clear, debug, debugdata, warning, error.
 They all have the same great formating but each have some unique diferences.
 This is how a console.log fo this.props on a React App looks
 
-```
-Here is the console.log from a react app
+Exemple:
 
-clear
 ```
+import React, { Component } from 'react';
+import { LOGGING_LEVELS, logger } from 'clean_logs';
+
+logger.setLevel(LOGGING_LEVELS.DEBUG);
+
+class Demo extends Component {
+  componentDidMount() {
+    console.log(this.props);
+    logger.debug('Demo Render', this.props);
+  }
+  render() {
+    return <div>Test</div>;
+  }
+}
+
+export default Demo;
+```
+
+## logger.debug
+
+If you pass a string as one of the parameters clean_logs will use it as the title of the group, every type is displayed with a unique color and style,
+
+- Arrays or Objects will be grouped and the leght of the objects added to the label
+- Functions are DarkCyan <span style="color:DarkCyan"> someFuntion()</span>.
+- Numbers are SaddleBrown and italic <span style="color:SaddleBrown ; font-style: italic"> 100</span>.
+- string are blue <span style="color:blue  "> SomeString</span>
+- undefined are Chocolate and italic <span style="color:Chocolate ; font-style: italic"> UNDEFINED</span>
+- null are Brown and italic <span style="color:Brown ; font-style: italic"> NULL</span>
+- dates are DarkGreen <span style="color:DarkGreen  "> 10/10/2018</span>
+- moment object is ForestGreen and formated as lll <span style="color:ForestGreen  "> 10/10/2018</span>
+- EMPTY are DeepPink <span style="color:DeepPink ; font-style: italic"> EMPTY</span>
+
+![](./images/demo.png)
+
+## logger.debugdata
 
 ## License
 

@@ -1,8 +1,8 @@
 {
   "name": "clean_logs",
-  "version": "1.00.08",
+  "version": "1.00.09",
   "description": "Nicely formated console.log() that can also switched on/off by setting logging level!",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha"
   },
