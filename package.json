@@ -1,7 +1,7 @@
 {
   "name": "clean_logs",
-  "version": "1.00.01",
-  "description": "Usual console.log() can be switched on/off by setting logging level!",
+  "version": "1.00.02",
+  "description": "Nicely formated console.log() that can also switched on/off by setting logging level!",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha"
@@ -15,7 +15,7 @@
     "logging"
   ],
   "author": "Pablo Giani",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/pgiani/console-clean_logs/issues"
   },

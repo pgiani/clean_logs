@@ -1,4 +1,7 @@
 **console-logging**
+Turn you console form this
+![](./images/before.png)
+To this
 
 A wrapper around usual console.log() - This is a utility that I want to use along my frontend projects where I need to include logs for debugging and can easily turn them on/off by setting the logging level and make the console much easy to read.
 
@@ -39,11 +42,12 @@ logger.error("Hi", "I am", "an error")  // Output 'Hi I am an error'
 ## Log Types
 
 You have 5 log type clear, debug, debugdata, warning, error.
-They all have the same great formating but each have some unique diferences
+They all have the same great formating but each have some unique diferences.
+This is how a console.log fo this.props on a React App looks
 
 ```
 Here is the console.log from a react app
-![](./images/before.png)
+
 clear
 ```
 

@@ -100,5 +100,5 @@ exports.logger = logger;
 exports.Logging = Logging;
 
 if (require.main === module) {
-  logger.info('hihiii');
+  logger.info('helo);
 }
