@@ -88,7 +88,20 @@ every type is displayed with a unique color and style,
 - moment object is ForestGreen and formated as lll <span style="color:ForestGreen  "> 10/10/2018</span>
 - EMPTY are DeepPink <span style="color:DeepPink ; font-style: italic"> EMPTY</span>
 
-![](./images/demo.png)
+```
+1    logger.debug('Demo Render Title Here', this.props);
+2    logger.debug(this.props, 'Demo Render Title Here');
+3    logger.debug(this.props, 'Demo Render Title Here', {
+4      a: 100,
+5      x: 'more messages',
+6    })
+```
+
+Lines 1 and 2 generated the same <span style="color:blue  "> output </span> title on the to of the group and because we only have one object or array the group is open by default
+L
+Line 3 Generates a title on the top and each object is on a separated group with a number indication the leght of the object.
+
+![](./images/title.png)
 
 ## logger.debugdata
 
