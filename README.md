@@ -13,6 +13,9 @@ You can use the console logs for debugging and easily turn them on/off by settin
 
 ## Usage
 
+Install
+npm i clean_logs
+
 ```
 const logging = require("clean_logs");
 const logger = logging.logger;
@@ -99,7 +102,7 @@ every type is displayed with a unique color and style,
 
 Lines 1 and 2 generated the same <span style="color:blue  "> output </span> title on the to of the group and because we only have one object or array the group is open by default
 
-Line 3 Generates a title on the top and each object is on a separated group with a number indication the leght of the object.
+Line 3 generates a title on the top and each object is on a separated group with a number indication the leght of the object.
 
 ![](./images/title.png)
 
