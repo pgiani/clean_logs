@@ -57,8 +57,8 @@ export function logOut(data, level = 'DEBUG') {
 
     switch (level) {
       case 'ERROR':
-        console.error(`1---${Label.text}---`);
-        console.groupCollapsed(`---${Label}---`);
+        console.error(`---${Label.text}---`);
+        console.groupCollapsed(`---${Label.text}---`);
         loop(ordered, level);
         console.groupEnd();
         break;

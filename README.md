@@ -4,11 +4,12 @@ Turn your plain console form this
 
 ![](./images/before.png)
 
-To this
+To this,
 
 ![](./images/after.png)
 
-A wrapper around usual console.log() - This is a utility that I want to use along my frontend projects where I need to include logs for debugging and can easily turn them on/off by setting the logging level and make the console much easy to read.
+A wrapper around usual console.log() - This is a utility that I use along with frontend React project to visualize complex objects.
+You can use the console logs for debugging and easily turn them on/off by setting the logging level and have logs that are clear to read.
 
 ## Usage
 
@@ -40,7 +41,7 @@ logger.error("Transaction fail, transaction id 1")  // No output
 logger.setLevel(logging.LOGGING_LEVELS.ERROR)
 logger.error("Transaction fail, transaction id 1")  // Output 'Transaction fail, transaction id 1'
 
-// multi-args is supported
+// multi-args is supported with any combination of strings, objects, arrays or functions.
 logger.error("Hi", "I am", "an error")  // Output 'Hi I am an error'
 ```
 
@@ -73,7 +74,9 @@ export default Demo;
 
 ## logger.debug
 
-If you pass a string as one of the parameters clean_logs will use it as the title of the group, every type is displayed with a unique color and style,
+If you pass a string as one of the parameters clean_logs will use it as the title of the group.
+It groups any object or arrays
+every type is displayed with a unique color and style,
 
 - Arrays or Objects will be grouped and the leght of the objects added to the label
 - Functions are DarkCyan <span style="color:DarkCyan"> someFuntion()</span>.
@@ -81,13 +84,26 @@ If you pass a string as one of the parameters clean_logs will use it as the titl
 - string are blue <span style="color:blue  "> SomeString</span>
 - undefined are Chocolate and italic <span style="color:Chocolate ; font-style: italic"> UNDEFINED</span>
 - null are Brown and italic <span style="color:Brown ; font-style: italic"> NULL</span>
-- dates are DarkGreen <span style="color:DarkGreen  "> 10/10/2018</span>
+- dates are DarkGreen <span style="color:DarkGreen  "> 10/10/2018</span>+
 - moment object is ForestGreen and formated as lll <span style="color:ForestGreen  "> 10/10/2018</span>
 - EMPTY are DeepPink <span style="color:DeepPink ; font-style: italic"> EMPTY</span>
 
 ![](./images/demo.png)
 
 ## logger.debugdata
+
+Same as logger.debug but it strips out any function from the output, good for when you are debuging only the data in the console.
+
+![](./images/debugdata.png)
+
+## logger.warning logger.error
+
+Same as logger.debug, any strings parameters will be added to the top of the group with orange or red label, the group data will default to a close group.
+![](./images/error.png)
+
+The color label can be open to show a trace for you to find out where the console.log was called from, it is not a very clean trace but I still find it usefull.
+
+![](./images/trace.png)
 
 ## License
 
