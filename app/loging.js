@@ -14,7 +14,7 @@ function loop(data, level) {
   }
 }
 
-export function logOut(data, level = 'DEBUG') {
+export default function logOut(data, level = 'DEBUG') {
   const objType = typeof data;
 
   // if clear them clear the console first the out put the message
