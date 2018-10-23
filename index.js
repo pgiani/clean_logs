@@ -245,6 +245,7 @@ function logWithLevel(level, message, messagetype) {
 }
 
 //region [ Logger ]
+const counts = {}
 const logger = {};
 
 /**
@@ -271,7 +272,26 @@ logger.setLevel = function setLoggingLevel(level) {
  * @param message
  */
 logger.log = function(level, message, messagetype) {
-  logWithLevel(level, message, messagetype);
+  var messageArray = [].slice.call(message);
+  var label = messageArray[0];
+  var max = Number.MAX_SAFE_INTEGER;
+
+  if(typeof label === 'object'){
+    var _label = label;
+    label = _label.label;
+    max = _label.max || max
+  }
+
+  if(!counts[label]){
+    counts[label] = 0
+  }
+
+  if(counts[label]++ >= max){
+    return;
+  }
+
+  var newMessage = [label].concat(messageArray.slice(1, messageArray.length))
+  logWithLevel(level, newMessage, messagetype);
 };
 
 /**
