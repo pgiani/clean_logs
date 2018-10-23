@@ -84,7 +84,7 @@ every type is displayed with a unique color and style,
 - string are blue <span style="color:blue  "> SomeString</span>
 - undefined are Chocolate and italic <span style="color:Chocolate ; font-style: italic"> UNDEFINED</span>
 - null are Brown and italic <span style="color:Brown ; font-style: italic"> NULL</span>
-- dates are DarkGreen <span style="color:DarkGreen  "> 10/10/2018</span>+
+- dates are DarkGreen <span style="color:DarkGreen  "> 10/10/2018</span>
 - moment object is ForestGreen and formated as lll <span style="color:ForestGreen  "> 10/10/2018</span>
 - EMPTY are DeepPink <span style="color:DeepPink ; font-style: italic"> EMPTY</span>
 
@@ -98,7 +98,7 @@ every type is displayed with a unique color and style,
 ```
 
 Lines 1 and 2 generated the same <span style="color:blue  "> output </span> title on the to of the group and because we only have one object or array the group is open by default
-L
+
 Line 3 Generates a title on the top and each object is on a separated group with a number indication the leght of the object.
 
 ![](./images/title.png)
