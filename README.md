@@ -14,6 +14,7 @@ You can use the console logs for debugging and easily turn them on/off by settin
 ## Usage
 
 Install
+
 npm i clean_logs
 
 ```
