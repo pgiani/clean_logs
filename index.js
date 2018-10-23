@@ -1,9 +1,9 @@
-const { _filter } = require('lodash/filter');
-const { _size } = require('lodash/size');
-const { _forEach } = require('lodash/forEach');
-const { _isNull } = require('lodash/isNull');
-const { _isEmpty } = require('lodash/isEmpty');
-const { _has } = require('lodash/has');
+const _filter = require('lodash/filter');
+const _size = require('lodash/size');
+const _forEach = require('lodash/forEach');
+const _isNull = require('lodash/isNull');
+const _isEmpty = require('lodash/isEmpty');
+const _has = require('lodash/has');
 
 function getText(data) {
   let text = null;
