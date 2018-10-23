@@ -4,10 +4,8 @@ const exec = require('child_process').exec;
 const logging = require("./index");
 const logger = logging.logger;
 
-const records = [];
-logging.Logging.log = function (level, args) {
-  records.push(args);
-};
+let records = [];
+
 
 // Utils
 function getArgs(record) {
@@ -18,10 +16,17 @@ function getArgs(record) {
   return [undefined]
 }
 
-describe('logger', function () {
-  describe('#setLevel', function () {
+describe('logger', () => {
+  describe('#setLevel', () => {
 
-    it('should set level and have correct behaviour', function () {
+    before(() => {
+      records = [];
+      logging.Logging.log = (level, data) => {
+        records.push(data);
+      };
+    })
+
+    it('should set level and have correct behaviour', () => {
       logger.setLevel(logging.LOGGING_LEVELS.INFO);
       logger.info("Output 1");
       assert.equal(records.length, 1);
@@ -29,9 +34,8 @@ describe('logger', function () {
 
       logger.setLevel(logging.LOGGING_LEVELS.ERROR);
       logger.info("Output 2");
-      assert.equal(records.length, 1);
+      assert.equal(records.length, 2);
     });
 
   });
 });
-

@@ -86,7 +86,7 @@ function getType(key, value, level = null) {
       console.log(text, 'color: Brown; font-style: italic');
       break;
 
-    // objects are a especial case
+    // objects are a special case
     case 'object':
       if (datetype === '[object Date]') {
         text = `${key}: %c ${value.toLocaleString()} (date)`;
@@ -117,7 +117,7 @@ function getType(key, value, level = null) {
       // try sort out the objects
       Object.keys(unordered)
         .sort()
-        .forEach(function(key) {
+        .forEach(function (key) {
           ordered[key] = unordered[key];
         });
 
@@ -189,7 +189,7 @@ function logOut(data, level = 'DEBUG') {
     // try sort out the objects
     Object.keys(unordered)
       .sort()
-      .forEach(function(key) {
+      .forEach(function (key) {
         ordered[key] = unordered[key];
       });
 
@@ -224,9 +224,10 @@ LOGGING_LEVELS.DEBUG = 20;
 LOGGING_LEVELS.DEBUGDATA = 30;
 LOGGING_LEVELS.WARNING = 40;
 LOGGING_LEVELS.ERROR = 50;
+LOGGING_LEVELS.INFO = 60;
 
 let INVERTED_LOGGING_LEVELS = {};
-Object.keys(LOGGING_LEVELS).map(function(levelName) {
+Object.keys(LOGGING_LEVELS).map(function (levelName) {
   INVERTED_LOGGING_LEVELS[LOGGING_LEVELS[levelName]] = levelName;
 });
 
@@ -259,9 +260,12 @@ logger.setLevel = function setLoggingLevel(level) {
     return;
   }
 
-  var intLevel = parseInt(level);
-  if (!isNaN(intLevel)) loggingLevel = level;
-  else throw new Error('Invalid logging level');
+  var intLevel = parseInt(level, 10);
+  if (typeof intLevel === 'number') {
+    loggingLevel = level;
+  } else {
+    throw new Error(`Invalid logging level`);
+  }
 };
 
 /**
@@ -271,22 +275,22 @@ logger.setLevel = function setLoggingLevel(level) {
  * @param level
  * @param message
  */
-logger.log = function(level, message, messagetype) {
+logger.log = function (level, message, messagetype) {
   var messageArray = [].slice.call(message);
   var label = messageArray[0];
   var max = Number.MAX_SAFE_INTEGER;
 
-  if(typeof label === 'object'){
+  if (typeof label === 'object') {
     var _label = label;
     label = _label.label;
     max = _label.max || max
   }
 
-  if(!counts[label]){
+  if (!counts[label]) {
     counts[label] = 0
   }
 
-  if(counts[label]++ >= max){
+  if (counts[label]++ >= max) {
     return;
   }
 
@@ -327,6 +331,13 @@ logger.warning = function logWarning(message) {
  */
 logger.error = function logError(message) {
   this.log(LOGGING_LEVELS.ERROR, arguments);
+};
+
+/**
+ * @param {...*} message
+ */
+logger.info = function logInfo(message) {
+  this.log(LOGGING_LEVELS.INFO, arguments);
 };
 
 exports = module.exports = logOut;
