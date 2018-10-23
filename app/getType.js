@@ -85,7 +85,7 @@ export default function getType(key, value, level = null) {
         break;
       }
 
-      // check how deep the object is, formationd very deep nested objects will
+      // check how deep the object is, formation of very deep nested objects will
       // will make the the browser slow down
       const deeped = deep(value);
       const unordered = value;
@@ -98,7 +98,7 @@ export default function getType(key, value, level = null) {
         });
 
       if (deeped > 0 && deeped < 10) {
-        // Not an arrrayjust go 2 levels deep
+        // Not an arrray, just go 2 levels deep
         console.groupCollapsed(`${key} [${_size(value)}]`);
         const properties = Object.getOwnPropertyNames(ordered);
         _forEach(properties, o => {

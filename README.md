@@ -28,7 +28,7 @@ or ES6 import
 import {LOGGING_LEVELS, logger } from 'clean_logs';
 ```
 
-## Loggin Level
+## Logging Level
 
 The use case of logger.setLevel() is in production environment, just switch on/off the logger and you have extra debug logs!
 So remember to include logger.xyz() during app development.
@@ -49,13 +49,13 @@ logger.error("Transaction fail, transaction id 1")  // Output 'Transaction fail,
 logger.error("Hi", "I am", "an error")  // Output 'Hi I am an error'
 ```
 
-## Log Formating
+## Log Formatting
 
 You have 5 log type clear, debug, debugdata, warning, error.
 They all have the same great formating but each have some unique diferences.
 This is how a console.log fo this.props on a React App looks
 
-Exemple:
+Example:
 
 ```
 import React, { Component } from 'react';
@@ -82,7 +82,7 @@ If you pass a string as one of the parameters clean_logs will use it as the titl
 It groups any object or arrays
 every type is displayed with a unique color and style,
 
-- Arrays or Objects will be grouped and the leght of the objects added to the label
+- Arrays or Objects will be grouped and the length of the objects added to the label
 - Functions are DarkCyan <span style="color:DarkCyan"> someFuntion()</span>.
 - Numbers are SaddleBrown and italic <span style="color:SaddleBrown ; font-style: italic"> 100</span>.
 - string are blue <span style="color:blue  "> SomeString</span>
@@ -103,13 +103,13 @@ every type is displayed with a unique color and style,
 
 Lines 1 and 2 generated the same <span style="color:blue  "> output </span> title on the to of the group and because we only have one object or array the group is open by default
 
-Line 3 generates a title on the top and each object is on a separated group with a number indication the leght of the object.
+Line 3 generates a title on the top and each object is on a separated group with a number indication the length of the object.
 
 ![](./images/title.png)
 
 ## logger.debugdata
 
-Same as logger.debug but it strips out any function from the output, good for when you are debuging only the data in the console.
+Same as logger.debug but it strips out any function from the output, good for when you are debugging only the data in the console.
 
 ![](./images/debugdata.png)
 
