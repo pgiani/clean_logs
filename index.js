@@ -17,14 +17,27 @@ function getText(data) {
   return { text, index };
 }
 
-function deep(object) {
+function deep(data) {
+  let object = {};
+  // browser will crash if circular references exist
+  try {
+    object = JSON.stringify(data);
+  } catch (error) {
+    // discard key if value cannot be deduped
+    return 10;
+  }
+
   var level = 1;
   var key;
   for (key in object) {
+    // browser will crash if object is too deep
+    if (level > 5) return;
     if (!object.hasOwnProperty(key)) continue;
     if (typeof object[key] == 'object') {
+      if (level > 5) return;
       var depth = deep(object[key]) + 1;
       level = Math.max(depth, level);
+      if (level > 5) return;
     }
   }
   return level;
@@ -108,7 +121,7 @@ function getType(key, value, level = null) {
           ordered[key] = unordered[key];
         });
 
-      if (deeped > 0 && deeped < 10) {
+      if (deeped > 0 && deeped < 5) {
         // Not an arrrayjust go 2 levels deep
         console.groupCollapsed(`${key} [${_size(value)}]`);
         const properties = Object.getOwnPropertyNames(ordered);
