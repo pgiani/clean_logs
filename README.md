@@ -1,6 +1,6 @@
 **console-logging**
 
-Turn your plain console form this
+Turn your plain console from this
 
 ![](./images/before.png)
 
@@ -30,7 +30,7 @@ import {LOGGING_LEVELS, logger } from 'clean_logs';
 
 ## Logging Level
 
-The use case of logger.setLevel() is in production environment, just switch on/off the logger and you have extra debug logs!
+The use case of logger.setLevel() is in production environment, just switch the logger on/off and you have extra debug logs!
 So remember to include logger.xyz() during app development.
 
 ```
@@ -51,8 +51,8 @@ logger.error("Hi", "I am", "an error")  // Output 'Hi I am an error'
 
 ## Log Formatting
 
-You have 5 log type clear, debug, debugdata, warning, error.
-They all have the same great formating but each have some unique diferences.
+You have 5 log types: clear, debug, debugdata, warning, error.
+They all have the same great formatting but each have some unique differences.
 This is how a console.log fo this.props on a React App looks
 
 Example:
@@ -78,9 +78,9 @@ export default Demo;
 
 ## logger.debug
 
-If you pass a string as one of the parameters clean_logs will use it as the title of the group.
-It groups any object or arrays
-every type is displayed with a unique color and style,
+If you pass a string as one of the parameters, clean_logs will use it as the title of the group.
+It groups any object or arrays.
+Every type is displayed with a unique color and style,
 
 - Arrays or Objects will be grouped and the length of the objects added to the label
 - Functions are DarkCyan <span style="color:DarkCyan"> someFuntion()</span>.
@@ -101,9 +101,9 @@ every type is displayed with a unique color and style,
 6    })
 ```
 
-Lines 1 and 2 generated the same <span style="color:blue  "> output </span> title on the to of the group and because we only have one object or array the group is open by default
+Lines 1 and 2 generated the same <span style="color:blue  "> output </span> title at the top of the group and because we only have one object or array the group is open by default.
 
-Line 3 generates a title on the top and each object is on a separated group with a number indication the length of the object.
+Line 3 generates a title at the top and each object is on a separated group with a number indicating the length of the object.
 
 ![](./images/title.png)
 
@@ -115,10 +115,10 @@ Same as logger.debug but it strips out any function from the output, good for wh
 
 ## logger.warning logger.error
 
-Same as logger.debug, any strings parameters will be added to the top of the group with orange or red label, the group data will default to a close group.
+Same as logger.debug, any strings parameters will be added to the top of the group with an orange or red label, the group data will default to a close group.
 ![](./images/error.png)
 
-The color label can be open to show a trace for you to find out where the console.log was called from, it is not a very clean trace but I still find it usefull.
+The color label can be opened to show a trace for you to find out where the console.log was called from, it is not a very clean trace but I still find it useful.
 
 ![](./images/trace.png)
 
