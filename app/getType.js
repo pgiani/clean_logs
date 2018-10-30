@@ -1,5 +1,4 @@
 import _isNull from 'lodash/isNull';
-import _isEmpty from 'lodash/isEmpty';
 import _forEach from 'lodash/forEach';
 import _isArray from 'lodash/isArray';
 import _keys from 'lodash/keys';
@@ -79,7 +78,7 @@ export default function getType(key, value, level = null) {
         console.log(text, 'color: ForestGreen');
         break;
       }
-      if (_isEmpty(value)) {
+      if (Object.keys(value).length === 0) {
         text = `${key}: %c EMPTY`;
         console.log(text, 'color: DeepPink');
         break;
