@@ -2,7 +2,6 @@ const _filter = require('lodash/filter');
 const _size = require('lodash/size');
 const _forEach = require('lodash/forEach');
 const _isNull = require('lodash/isNull');
-const _isEmpty = require('lodash/isEmpty');
 const _has = require('lodash/has');
 
 function getText(data) {
@@ -103,7 +102,7 @@ function getType(key, value, level = null) {
         console.log(text, 'color: ForestGreen');
         break;
       }
-      if (_isEmpty(value)) {
+      if (Object.keys(value).length === 0) {
         text = `${key}: %c EMPTY`;
         console.log(text, 'color: DeepPink');
         break;
