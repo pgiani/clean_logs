@@ -1,5 +1,3 @@
-import _forEach from 'lodash/forEach';
-
 export function getText(data) {
   let text = null;
   let index = null;

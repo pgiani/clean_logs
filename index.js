@@ -1,9 +1,7 @@
-const _forEach = require('lodash/forEach');
-
 const getText = (data) => {
   let text = null;
   let index = null;
-  _forEach(data, (val, key) => {
+  data.forEach((val, key) => {
     if (text === null && typeof val === 'string') {
       text = val;
       index = key;
@@ -120,9 +118,7 @@ function getType(key, value, level = null) {
         // Not an arrrayjust go 2 levels deep
         console.groupCollapsed(`${key} [${Object.keys(value).length}]`);
         const properties = Object.getOwnPropertyNames(ordered);
-        _forEach(properties, o => {
-          getType(o, value[o], level);
-        });
+        properties.forEach(prop => getType(prop, value[prop], level));
         console.groupEnd();
 
         break;
@@ -140,10 +136,11 @@ function getType(key, value, level = null) {
 }
 
 function loop(data, level) {
-  if (Object.keys(data).length === 1) {
-    _forEach(data[0], (val, key) => getType(key, val, level));
+  const propNames = Object.keys(data[0]);
+  if (propNames.length === 1) {
+    getType(propNames[0], data[0][propNames[0]], level);
   } else {
-    _forEach(data, (val, key) => getType(key, val, level));
+    propNames.forEach(name => getType(name, data[0][name], level));
   }
 }
 

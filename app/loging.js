@@ -1,13 +1,12 @@
-import _forEach from 'lodash/forEach';
-
 import { getText } from './getText';
 import getType from './getType';
 
 function loop(data, level) {
-  if (Object.keys(data).length === 1) {
-    _forEach(data[0], (val, key) => getType(key, val, level));
+  const propNames = Object.keys(data[0]);
+  if (propNames.length === 1) {
+    getType(propNames[0], data[0][propNames[0]], level);
   } else {
-    _forEach(data, (val, key) => getType(key, val, level));
+    propNames.forEach(name => getType(name, data[0][name], level));
   }
 }
 
