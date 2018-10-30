@@ -2,7 +2,6 @@ const _filter = require('lodash/filter');
 const _size = require('lodash/size');
 const _forEach = require('lodash/forEach');
 const _isNull = require('lodash/isNull');
-const _has = require('lodash/has');
 
 function getText(data) {
   let text = null;
@@ -97,7 +96,7 @@ function getType(key, value, level = null) {
         console.log(text, 'color: Brown; font-style: italic');
         break;
       }
-      if (_has(value, '_isAMomentObject')) {
+      if (value.hasOwnProperty('_isAMomentObject')) {
         text = `${key}: %c ${value.format('lll')} (moment)`;
         console.log(text, 'color: ForestGreen');
         break;

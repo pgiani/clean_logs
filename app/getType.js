@@ -1,9 +1,7 @@
 import _isNull from 'lodash/isNull';
 import _forEach from 'lodash/forEach';
-import _isArray from 'lodash/isArray';
 import _keys from 'lodash/keys';
 import _size from 'lodash/size';
-import _has from 'lodash/has';
 
 function deep(object) {
   var level = 1;
@@ -73,7 +71,7 @@ export default function getType(key, value, level = null) {
         console.log(text, 'color: Brown; font-style: italic');
         break;
       }
-      if (_has(value, '_isAMomentObject')) {
+      if (value.hasOwnProperty('_isAMomentObject')) {
         text = `${key}: %c ${value.format('lll')} (moment)`;
         console.log(text, 'color: ForestGreen');
         break;
