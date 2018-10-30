@@ -1,5 +1,4 @@
 const _filter = require('lodash/filter');
-const _size = require('lodash/size');
 const _forEach = require('lodash/forEach');
 
 function getText(data) {
@@ -120,7 +119,7 @@ function getType(key, value, level = null) {
 
       if (deeped > 0 && deeped < 5) {
         // Not an arrrayjust go 2 levels deep
-        console.groupCollapsed(`${key} [${_size(value)}]`);
+        console.groupCollapsed(`${key} [${Object.keys(value).length}]`);
         const properties = Object.getOwnPropertyNames(ordered);
         _forEach(properties, o => {
           getType(o, value[o], level);
@@ -142,7 +141,7 @@ function getType(key, value, level = null) {
 }
 
 function loop(data, level) {
-  if (_size(data) === 1) {
+  if (Object.keys(data).length === 1) {
     _forEach(data[0], (val, key) => getType(key, val, level));
   } else {
     _forEach(data, (val, key) => getType(key, val, level));

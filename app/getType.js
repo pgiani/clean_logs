@@ -1,6 +1,4 @@
 import _forEach from 'lodash/forEach';
-import _keys from 'lodash/keys';
-import _size from 'lodash/size';
 
 function deep(object) {
   var level = 1;
@@ -95,7 +93,7 @@ export default function getType(key, value, level = null) {
 
       if (deeped > 0 && deeped < 10) {
         // Not an arrray, just go 2 levels deep
-        console.groupCollapsed(`${key} [${_size(value)}]`);
+        console.groupCollapsed(`${key} [${Object.keys(value).length}]`);
         const properties = Object.getOwnPropertyNames(ordered);
         _forEach(properties, o => {
           getType(o, value[o], level);

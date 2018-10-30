@@ -1,13 +1,11 @@
 import _filter from 'lodash/filter';
-import _size from 'lodash/size';
-import _sortedIndexBy from 'lodash/sortedIndexBy';
 import _forEach from 'lodash/forEach';
 
 import { getText } from './getText';
 import getType from './getType';
 
 function loop(data, level) {
-  if (_size(data) === 1) {
+  if (Object.keys(data).length === 1) {
     _forEach(data[0], (val, key) => getType(key, val, level));
   } else {
     _forEach(data, (val, key) => getType(key, val, level));
