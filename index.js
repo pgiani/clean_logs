@@ -1,7 +1,6 @@
 const _filter = require('lodash/filter');
 const _size = require('lodash/size');
 const _forEach = require('lodash/forEach');
-const _isNull = require('lodash/isNull');
 
 function getText(data) {
   let text = null;
@@ -91,7 +90,7 @@ function getType(key, value, level = null) {
         console.log(text, 'color: DarkGreen');
         break;
       }
-      if (_isNull(value)) {
+      if (value === null) {
         text = `${key}: %c NULL`;
         console.log(text, 'color: Brown; font-style: italic');
         break;

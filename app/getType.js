@@ -1,4 +1,3 @@
-import _isNull from 'lodash/isNull';
 import _forEach from 'lodash/forEach';
 import _keys from 'lodash/keys';
 import _size from 'lodash/size';
@@ -66,7 +65,7 @@ export default function getType(key, value, level = null) {
         console.log(text, 'color: DarkGreen');
         break;
       }
-      if (_isNull(value)) {
+      if (value === null) {
         text = `${key}: %c NULL`;
         console.log(text, 'color: Brown; font-style: italic');
         break;
