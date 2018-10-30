@@ -1,7 +1,6 @@
-const _filter = require('lodash/filter');
 const _forEach = require('lodash/forEach');
 
-function getText(data) {
+const getText = (data) => {
   let text = null;
   let index = null;
   _forEach(data, (val, key) => {
@@ -11,7 +10,7 @@ function getText(data) {
     }
   });
   return { text, index };
-}
+};
 
 function deep(data) {
   let object = {};
@@ -177,9 +176,7 @@ function logOut(data, level = 'DEBUG') {
 
     // removed the label from the data structure
 
-    const unordered = _filter(data, o => {
-      return o !== Label.text;
-    });
+    const unordered = data.filter(datum => datum !== Label.text);
 
     const ordered = {};
     // try sort out the objects

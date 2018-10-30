@@ -1,4 +1,3 @@
-import _filter from 'lodash/filter';
 import _forEach from 'lodash/forEach';
 
 import { getText } from './getText';
@@ -41,9 +40,7 @@ export default function logOut(data, level = 'DEBUG') {
 
     // removed the label from the data structure
 
-    const unordered = _filter(data, o => {
-      return o !== Label.text;
-    });
+    const unordered = data.filter(datum => datum !== Label.text);
 
     const ordered = {};
     // try sort out the objects
