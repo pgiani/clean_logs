@@ -1,10 +1,3 @@
-import _isNull from 'lodash/isNull';
-import _forEach from 'lodash/forEach';
-import _isArray from 'lodash/isArray';
-import _keys from 'lodash/keys';
-import _size from 'lodash/size';
-import _has from 'lodash/has';
-
 function deep(object) {
   var level = 1;
   var key;
@@ -68,12 +61,12 @@ export default function getType(key, value, level = null) {
         console.log(text, 'color: DarkGreen');
         break;
       }
-      if (_isNull(value)) {
+      if (value === null) {
         text = `${key}: %c NULL`;
         console.log(text, 'color: Brown; font-style: italic');
         break;
       }
-      if (_has(value, '_isAMomentObject')) {
+      if (value.hasOwnProperty('_isAMomentObject')) {
         text = `${key}: %c ${value.format('lll')} (moment)`;
         console.log(text, 'color: ForestGreen');
         break;
@@ -98,11 +91,9 @@ export default function getType(key, value, level = null) {
 
       if (deeped > 0 && deeped < 10) {
         // Not an arrray, just go 2 levels deep
-        console.groupCollapsed(`${key} [${_size(value)}]`);
+        console.groupCollapsed(`${key} [${Object.keys(value).length}]`);
         const properties = Object.getOwnPropertyNames(ordered);
-        _forEach(properties, o => {
-          getType(o, value[o], level);
-        });
+        properties.forEach(prop => getType(prop, value[prop], level));
         console.groupEnd();
 
         break;

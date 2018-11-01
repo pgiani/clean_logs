@@ -1,20 +1,14 @@
-const _filter = require('lodash/filter');
-const _size = require('lodash/size');
-const _forEach = require('lodash/forEach');
-const _isNull = require('lodash/isNull');
-const _has = require('lodash/has');
-
-function getText(data) {
+const getText = (data) => {
   let text = null;
   let index = null;
-  _forEach(data, (val, key) => {
+  data.forEach((val, key) => {
     if (text === null && typeof val === 'string') {
       text = val;
       index = key;
     }
   });
   return { text, index };
-}
+};
 
 function deep(data) {
   let object = {};
@@ -92,12 +86,12 @@ function getType(key, value, level = null) {
         console.log(text, 'color: DarkGreen');
         break;
       }
-      if (_isNull(value)) {
+      if (value === null) {
         text = `${key}: %c NULL`;
         console.log(text, 'color: Brown; font-style: italic');
         break;
       }
-      if (_has(value, '_isAMomentObject')) {
+      if (value.hasOwnProperty('_isAMomentObject')) {
         text = `${key}: %c ${value.format('lll')} (moment)`;
         console.log(text, 'color: ForestGreen');
         break;
@@ -122,11 +116,9 @@ function getType(key, value, level = null) {
 
       if (deeped > 0 && deeped < 5) {
         // Not an arrrayjust go 2 levels deep
-        console.groupCollapsed(`${key} [${_size(value)}]`);
+        console.groupCollapsed(`${key} [${Object.keys(value).length}]`);
         const properties = Object.getOwnPropertyNames(ordered);
-        _forEach(properties, o => {
-          getType(o, value[o], level);
-        });
+        properties.forEach(prop => getType(prop, value[prop], level));
         console.groupEnd();
 
         break;
@@ -144,10 +136,11 @@ function getType(key, value, level = null) {
 }
 
 function loop(data, level) {
-  if (_size(data) === 1) {
-    _forEach(data[0], (val, key) => getType(key, val, level));
+  const propNames = Object.keys(data[0]);
+  if (propNames.length === 1) {
+    getType(propNames[0], data[0][propNames[0]], level);
   } else {
-    _forEach(data, (val, key) => getType(key, val, level));
+    propNames.forEach(name => getType(name, data[0][name], level));
   }
 }
 
@@ -180,9 +173,7 @@ function logOut(data, level = 'DEBUG') {
 
     // removed the label from the data structure
 
-    const unordered = _filter(data, o => {
-      return o !== Label.text;
-    });
+    const unordered = data.filter(datum => datum !== Label.text);
 
     const ordered = {};
     // try sort out the objects

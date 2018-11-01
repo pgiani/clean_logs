@@ -1,16 +1,12 @@
-import _filter from 'lodash/filter';
-import _size from 'lodash/size';
-import _sortedIndexBy from 'lodash/sortedIndexBy';
-import _forEach from 'lodash/forEach';
-
 import { getText } from './getText';
 import getType from './getType';
 
 function loop(data, level) {
-  if (_size(data) === 1) {
-    _forEach(data[0], (val, key) => getType(key, val, level));
+  const propNames = Object.keys(data[0]);
+  if (propNames.length === 1) {
+    getType(propNames[0], data[0][propNames[0]], level);
   } else {
-    _forEach(data, (val, key) => getType(key, val, level));
+    propNames.forEach(name => getType(name, data[0][name], level));
   }
 }
 
@@ -43,9 +39,7 @@ export default function logOut(data, level = 'DEBUG') {
 
     // removed the label from the data structure
 
-    const unordered = _filter(data, o => {
-      return o !== Label.text;
-    });
+    const unordered = data.filter(datum => datum !== Label.text);
 
     const ordered = {};
     // try sort out the objects
