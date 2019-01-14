@@ -1,6 +1,6 @@
 {
   "name": "clean_logs",
-  "version": "1.00.15",
+  "version": "1.00.16",
   "description": "Nicely formatted console.log() that can also switched on/off by setting logging level!",
   "main": "index.js",
   "scripts": {
