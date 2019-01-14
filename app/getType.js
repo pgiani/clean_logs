@@ -89,7 +89,7 @@ export default function getType(key, value, level = null) {
           ordered[key] = unordered[key];
         });
 
-      if (deeped > 0 && deeped < 10) {
+      if (deeped > 0 && deeped < 5) {
         // Not an arrray, just go 2 levels deep
         console.groupCollapsed(`${key} [${Object.keys(value).length}]`);
         const properties = Object.getOwnPropertyNames(ordered);
