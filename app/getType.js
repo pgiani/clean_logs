@@ -66,7 +66,7 @@ export default function getType(key, value, level = null) {
         console.log(text, 'color: Brown; font-style: italic');
         break;
       }
-      if (value.hasOwnProperty('_isAMomentObject')) {
+      if ('_isAMomentObject' in value) {
         text = `${key}: %c ${value.format('lll')} (moment)`;
         console.log(text, 'color: ForestGreen');
         break;

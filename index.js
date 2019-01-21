@@ -1,4 +1,4 @@
-const getText = (data) => {
+const getText = data => {
   let text = null;
   let index = null;
   data.forEach((val, key) => {
@@ -91,7 +91,7 @@ function getType(key, value, level = null) {
         console.log(text, 'color: Brown; font-style: italic');
         break;
       }
-      if (value.hasOwnProperty('_isAMomentObject')) {
+      if ('_isAMomentObject' in value) {
         text = `${key}: %c ${value.format('lll')} (moment)`;
         console.log(text, 'color: ForestGreen');
         break;
@@ -110,7 +110,7 @@ function getType(key, value, level = null) {
       // try sort out the objects
       Object.keys(unordered)
         .sort()
-        .forEach(function (key) {
+        .forEach(function(key) {
           ordered[key] = unordered[key];
         });
 
@@ -179,7 +179,7 @@ function logOut(data, level = 'DEBUG') {
     // try sort out the objects
     Object.keys(unordered)
       .sort()
-      .forEach(function (key) {
+      .forEach(function(key) {
         ordered[key] = unordered[key];
       });
 
@@ -217,7 +217,7 @@ LOGGING_LEVELS.ERROR = 50;
 LOGGING_LEVELS.INFO = 60;
 
 let INVERTED_LOGGING_LEVELS = {};
-Object.keys(LOGGING_LEVELS).map(function (levelName) {
+Object.keys(LOGGING_LEVELS).map(function(levelName) {
   INVERTED_LOGGING_LEVELS[LOGGING_LEVELS[levelName]] = levelName;
 });
 
@@ -236,7 +236,7 @@ function logWithLevel(level, message, messagetype) {
 }
 
 //region [ Logger ]
-const counts = {}
+const counts = {};
 const logger = {};
 
 /**
@@ -265,7 +265,7 @@ logger.setLevel = function setLoggingLevel(level) {
  * @param level
  * @param message
  */
-logger.log = function (level, message, messagetype) {
+logger.log = function(level, message, messagetype) {
   var messageArray = [].slice.call(message);
   var label = messageArray[0];
   var max = Number.MAX_SAFE_INTEGER;
@@ -273,18 +273,18 @@ logger.log = function (level, message, messagetype) {
   if (typeof label === 'object') {
     var _label = label;
     label = _label.label;
-    max = _label.max || max
+    max = _label.max || max;
   }
 
   if (!counts[label]) {
-    counts[label] = 0
+    counts[label] = 0;
   }
 
   if (counts[label]++ >= max) {
     return;
   }
 
-  var newMessage = [label].concat(messageArray.slice(1, messageArray.length))
+  var newMessage = [label].concat(messageArray.slice(1, messageArray.length));
   logWithLevel(level, newMessage, messagetype);
 };
 
