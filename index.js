@@ -20,20 +20,7 @@ function deep(data) {
     return 10;
   }
 
-  var level = 1;
-  var key;
-  for (key in object) {
-    // browser will crash if object is too deep
-    if (level > 5) return;
-    if (!object.hasOwnProperty(key)) continue;
-    if (typeof object[key] == 'object') {
-      if (level > 5) return;
-      var depth = deep(object[key]) + 1;
-      level = Math.max(depth, level);
-      if (level > 5) return;
-    }
-  }
-  return level;
+  return Object.keys(data).length;
 }
 
 function getType(key, value, level = null) {
